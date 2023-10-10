@@ -1,0 +1,16 @@
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\bin\Debug\net6.0-windows\Notepad.exe
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\bin\Debug\net6.0-windows\Notepad.deps.json
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\bin\Debug\net6.0-windows\Notepad.runtimeconfig.json
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\bin\Debug\net6.0-windows\Notepad.dll
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\bin\Debug\net6.0-windows\Notepad.pdb
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\Notepad.Form1.resources
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\Notepad.csproj.GenerateResource.cache
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\Notepad.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\Notepad.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\Notepad.AssemblyInfo.cs
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\Notepad.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\Notepad.dll
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\refint\Notepad.dll
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\Notepad.pdb
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\Notepad.genruntimeconfig.cache
+C:\Users\Lenovo\Documents\GitHub\WindowsForm\Notepad\obj\Debug\net6.0-windows\ref\Notepad.dll
