@@ -1,4 +1,5 @@
 ﻿using DemoEF.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,10 +11,17 @@ namespace DemoEF.Service {
     internal class ProductService : BaseService {
         CategoryService categoryService = new CategoryService();
         
-            public List<Product> GetProductByCateId(int categoryId) {
+        public List<Product> GetProductByCateId(int categoryId) {
             return _context.Products
-                .Where(p => p.CategoryId == categoryId).ToList();
-            }
+            .Include(p => p.Category)
+            .Where(p => p.CategoryId == categoryId).ToList();
+        }
+
+        public Product getProductById(int productId) {
+            return _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(p => p.ProductId == productId);
+        }
 
         public void AddProduct(Product product) {
             _context.Products.Add(product);

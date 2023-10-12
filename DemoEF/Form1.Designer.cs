@@ -25,17 +25,17 @@
         private void InitializeComponent() {
             categoryList = new ComboBox();
             dgProducts = new DataGridView();
-            Discontinued = new DataGridViewCheckBoxColumn();
-            ReoderLevel = new DataGridViewTextBoxColumn();
-            UnitPrice = new DataGridViewTextBoxColumn();
-            UnitsOnOrder = new DataGridViewTextBoxColumn();
-            UnitsInStock = new DataGridViewTextBoxColumn();
-            QuantityPerUnit = new DataGridViewTextBoxColumn();
-            CategoryId = new DataGridViewTextBoxColumn();
-            SupplierId = new DataGridViewTextBoxColumn();
-            ProductName = new DataGridViewTextBoxColumn();
-            ProductId = new DataGridViewTextBoxColumn();
+            groupBox1 = new GroupBox();
+            saveButton = new Button();
+            deleteButton = new Button();
+            addButton = new Button();
+            refreshButton = new Button();
+            updateCateList = new ComboBox();
+            priceNumeric = new NumericUpDown();
+            productName = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgProducts).BeginInit();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)priceNumeric).BeginInit();
             SuspendLayout();
             // 
             // categoryList
@@ -49,108 +49,107 @@
             // 
             // dgProducts
             // 
-            dgProducts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgProducts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dgProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgProducts.Columns.AddRange(new DataGridViewColumn[] { ProductId, ProductName, SupplierId, CategoryId, QuantityPerUnit, UnitsInStock, UnitsOnOrder, UnitPrice, ReoderLevel, Discontinued });
             dgProducts.Location = new Point(12, 60);
             dgProducts.Name = "dgProducts";
             dgProducts.RowHeadersWidth = 51;
             dgProducts.RowTemplate.Height = 29;
-            dgProducts.Size = new Size(1179, 420);
+            dgProducts.Size = new Size(721, 420);
             dgProducts.TabIndex = 1;
-            dgProducts.CellContentClick += dgProducts_CellContentClick;
+            dgProducts.CellClick += dgProducts_CellClick;
             // 
-            // Discontinued
+            // groupBox1
             // 
-            Discontinued.DataPropertyName = "Discontinued";
-            Discontinued.HeaderText = "Discontinued";
-            Discontinued.MinimumWidth = 6;
-            Discontinued.Name = "Discontinued";
-            Discontinued.Width = 125;
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            groupBox1.Controls.Add(saveButton);
+            groupBox1.Controls.Add(deleteButton);
+            groupBox1.Controls.Add(addButton);
+            groupBox1.Controls.Add(refreshButton);
+            groupBox1.Controls.Add(updateCateList);
+            groupBox1.Controls.Add(priceNumeric);
+            groupBox1.Controls.Add(productName);
+            groupBox1.Location = new Point(760, 60);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(424, 420);
+            groupBox1.TabIndex = 2;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "groupBox1";
             // 
-            // ReoderLevel
+            // saveButton
             // 
-            ReoderLevel.DataPropertyName = "ReorderLevel";
-            ReoderLevel.HeaderText = "ReorderLevel";
-            ReoderLevel.MinimumWidth = 6;
-            ReoderLevel.Name = "ReoderLevel";
-            ReoderLevel.Width = 125;
+            saveButton.Location = new Point(204, 349);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(91, 35);
+            saveButton.TabIndex = 6;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
-            // UnitPrice
+            // deleteButton
             // 
-            UnitPrice.DataPropertyName = "UnitPrice";
-            UnitPrice.HeaderText = "UnitPrice";
-            UnitPrice.MinimumWidth = 6;
-            UnitPrice.Name = "UnitPrice";
-            UnitPrice.Width = 125;
+            deleteButton.Location = new Point(74, 349);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(85, 35);
+            deleteButton.TabIndex = 5;
+            deleteButton.Text = "Delete";
+            deleteButton.UseVisualStyleBackColor = true;
             // 
-            // UnitsOnOrder
+            // addButton
             // 
-            UnitsOnOrder.DataPropertyName = "UnitsOnOrder";
-            UnitsOnOrder.HeaderText = "UnitsOnOrder";
-            UnitsOnOrder.MinimumWidth = 6;
-            UnitsOnOrder.Name = "UnitsOnOrder";
-            UnitsOnOrder.Width = 125;
+            addButton.Location = new Point(204, 261);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(91, 33);
+            addButton.TabIndex = 4;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
             // 
-            // UnitsInStock
+            // refreshButton
             // 
-            UnitsInStock.DataPropertyName = "UnitsInStock";
-            UnitsInStock.HeaderText = "UnitsInStock";
-            UnitsInStock.MinimumWidth = 6;
-            UnitsInStock.Name = "UnitsInStock";
-            UnitsInStock.Width = 125;
+            refreshButton.Location = new Point(74, 261);
+            refreshButton.Name = "refreshButton";
+            refreshButton.Size = new Size(85, 33);
+            refreshButton.TabIndex = 3;
+            refreshButton.Text = "Refresh";
+            refreshButton.UseVisualStyleBackColor = true;
             // 
-            // QuantityPerUnit
+            // updateCateList
             // 
-            QuantityPerUnit.DataPropertyName = "QuantityPerUnit";
-            QuantityPerUnit.HeaderText = "QuantityPerUnit";
-            QuantityPerUnit.MinimumWidth = 6;
-            QuantityPerUnit.Name = "QuantityPerUnit";
-            QuantityPerUnit.Width = 125;
+            updateCateList.FormattingEnabled = true;
+            updateCateList.Location = new Point(84, 194);
+            updateCateList.Name = "updateCateList";
+            updateCateList.Size = new Size(202, 28);
+            updateCateList.TabIndex = 2;
             // 
-            // CategoryId
+            // priceNumeric
             // 
-            CategoryId.DataPropertyName = "CategoryName";
-            CategoryId.HeaderText = "CategoryName";
-            CategoryId.MinimumWidth = 6;
-            CategoryId.Name = "CategoryId";
-            CategoryId.Width = 125;
+            priceNumeric.Location = new Point(84, 113);
+            priceNumeric.Name = "priceNumeric";
+            priceNumeric.Size = new Size(202, 27);
+            priceNumeric.TabIndex = 1;
             // 
-            // SupplierId
+            // productName
             // 
-            SupplierId.DataPropertyName = "SupplierId";
-            SupplierId.HeaderText = "SupplierId";
-            SupplierId.MinimumWidth = 6;
-            SupplierId.Name = "SupplierId";
-            SupplierId.Width = 125;
-            // 
-            // ProductName
-            // 
-            ProductName.DataPropertyName = "ProductName";
-            ProductName.HeaderText = "ProductName";
-            ProductName.MinimumWidth = 6;
-            ProductName.Name = "ProductName";
-            ProductName.Width = 125;
-            // 
-            // ProductId
-            // 
-            ProductId.DataPropertyName = "ProductId";
-            ProductId.HeaderText = "ProductId1";
-            ProductId.MinimumWidth = 6;
-            ProductId.Name = "ProductId";
-            ProductId.Width = 125;
+            productName.Location = new Point(84, 55);
+            productName.Name = "productName";
+            productName.Size = new Size(192, 27);
+            productName.TabIndex = 0;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1203, 492);
+            Controls.Add(groupBox1);
             Controls.Add(dgProducts);
             Controls.Add(categoryList);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgProducts).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)priceNumeric).EndInit();
             ResumeLayout(false);
         }
 
@@ -159,15 +158,13 @@
         private ComboBox categoryList;
         private DataGridView dgProducts;
         private DataGridViewTextBoxColumn Supplier;
-        private DataGridViewTextBoxColumn ProductId;
-        private DataGridViewTextBoxColumn ProductName;
-        private DataGridViewTextBoxColumn SupplierId;
-        private DataGridViewTextBoxColumn CategoryId;
-        private DataGridViewTextBoxColumn QuantityPerUnit;
-        private DataGridViewTextBoxColumn UnitsInStock;
-        private DataGridViewTextBoxColumn UnitsOnOrder;
-        private DataGridViewTextBoxColumn UnitPrice;
-        private DataGridViewTextBoxColumn ReoderLevel;
-        private DataGridViewCheckBoxColumn Discontinued;
+        private GroupBox groupBox1;
+        private Button deleteButton;
+        private Button addButton;
+        private Button refreshButton;
+        private ComboBox updateCateList;
+        private NumericUpDown priceNumeric;
+        private TextBox productName;
+        private Button saveButton;
     }
 }

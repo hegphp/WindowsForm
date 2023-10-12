@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "Data": "server=LAPTOP-I19V04UD;database=NorthWind;user=henrygphp;password=123;TrustServerCertificate=true"
+  }
+}

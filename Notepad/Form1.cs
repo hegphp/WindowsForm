@@ -181,28 +181,23 @@ namespace Notepad {
             richTextBox1.SelectedText += DateTime.Now.ToString();
         }
 
-        private List<string> getSearchWordPosList(RichTextBox textBox, string input) {
-            List<string> resultList = new List<string>();
-            int lineNumber = 0;
-            int firstCharPos = 0;
-            //access every line in the file
-            foreach (string line in richTextBox1.Lines) {
-                lineNumber++;
-                string modifiedLine = line;
-                firstCharPos = 0;
-                while (modifiedLine.Contains(input)) {
-                    firstCharPos = modifiedLine.IndexOf(input);
-                    resultList.Add($"{lineNumber}:{firstCharPos}:{firstCharPos + input.Length - 1}");
-                    modifiedLine = modifiedLine.Substring(0, firstCharPos) + new string(' ', input.Length) + modifiedLine.Substring(firstCharPos + input.Length);
-                }
-            }
-            return resultList;
-        }
-
         private void findToolStripMenuItem_Click(object sender, EventArgs e) {
             string input = Microsoft.VisualBasic.Interaction.InputBox("Enter words:", "Find:", "", 0, 0);
 
-            List<string> resultList = getSearchWordPosList(richTextBox1, input);
+            int startIndex = 0;
+
+            while (startIndex < richTextBox1.TextLength) {
+                int wordStartIndex = richTextBox1.Find(input, startIndex, RichTextBoxFinds.None);
+
+                if (wordStartIndex != -1) {
+                    richTextBox1.SelectionStart = wordStartIndex;
+                    richTextBox1.SelectionLength = input.Length;
+                    richTextBox1.SelectionBackColor = Color.Yellow;
+                }
+                else
+                    break;
+                startIndex = wordStartIndex + input.Length;
+            }
         }
     }
 }
