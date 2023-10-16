@@ -42,7 +42,6 @@ namespace Notepad {
             try {
                 using (StreamReader reader = new StreamReader(fileName)) {
                     string line;
-                    int count = 0;
                     //Access every line in the file
                     while ((line = reader.ReadLine()) != null) {
                         text.AppendText(line + Environment.NewLine);
@@ -93,9 +92,6 @@ namespace Notepad {
         }
         //Save file
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
-            ////check if user change the file or not
-            //if (isChanged == true) {
-            //Check if the file is existed or not
             if (filePath == null) {
                 //Display a dialog to ask user where to save
 
@@ -114,7 +110,6 @@ namespace Notepad {
             }
             else
                 saveFile(filePath, richTextBox1);
-            //}
             isChanged = false;
         }
         //Set changed status when user change the file
@@ -148,13 +143,7 @@ namespace Notepad {
         }
 
         private void wordWarpToolStripMenuItem_Click(object sender, EventArgs e) {
-            //Check if the wordWarp is enable or not
-            if (richTextBox1.WordWrap == false) {
-                richTextBox1.WordWrap = true;
-            }
-            else {
-                richTextBox1.WordWrap = false;
-            }
+            richTextBox1.WordWrap = !richTextBox1.WordWrap;
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e) {

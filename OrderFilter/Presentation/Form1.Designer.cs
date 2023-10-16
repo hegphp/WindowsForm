@@ -36,6 +36,7 @@
             filterButton = new Button();
             label1 = new Label();
             label2 = new Label();
+            addOrderBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)ordersListDg).BeginInit();
             SuspendLayout();
             // 
@@ -66,7 +67,6 @@
             OrderId.MinimumWidth = 6;
             OrderId.Name = "OrderId";
             OrderId.Width = 125;
-            OrderId.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // Employee
             // 
@@ -75,7 +75,6 @@
             Employee.MinimumWidth = 6;
             Employee.Name = "Employee";
             Employee.Width = 125;
-            Employee.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // Customer
             // 
@@ -84,7 +83,6 @@
             Customer.MinimumWidth = 6;
             Customer.Name = "Customer";
             Customer.Width = 125;
-            Customer.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // Freight
             // 
@@ -93,7 +91,6 @@
             Freight.MinimumWidth = 6;
             Freight.Name = "Freight";
             Freight.Width = 125;
-            Freight.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // employeeListCB
             // 
@@ -102,7 +99,6 @@
             employeeListCB.Name = "employeeListCB";
             employeeListCB.Size = new Size(206, 28);
             employeeListCB.TabIndex = 1;
-            employeeListCB.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // customerListCB
             // 
@@ -154,11 +150,21 @@
             label2.TabIndex = 7;
             label2.Text = "To";
             // 
+            // addOrderBtn
+            // 
+            addOrderBtn.Location = new Point(497, 79);
+            addOrderBtn.Name = "addOrderBtn";
+            addOrderBtn.Size = new Size(94, 34);
+            addOrderBtn.TabIndex = 8;
+            addOrderBtn.Text = "Add Order";
+            addOrderBtn.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1081, 590);
+            Controls.Add(addOrderBtn);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(filterButton);
@@ -190,5 +196,6 @@
         private DataGridViewTextBoxColumn Employee;
         private DataGridViewTextBoxColumn Customer;
         private DataGridViewTextBoxColumn Freight;
+        private Button addOrderBtn;
     }
 }

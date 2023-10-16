@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace OrderFilter.Models
 {
@@ -21,13 +22,15 @@ namespace OrderFilter.Models
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
+        public virtual DbSet<Shipper> Shippers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("server=LAPTOP-I19V04UD;user=henrygphp;password=123;database=NorthWind");
+                var config = new ConfigurationBuilder().AddJsonFile("jsconfig1.json").Build();
+                optionsBuilder.UseSqlServer(config.GetConnectionString("Data"));
             }
         }
 
@@ -173,6 +176,11 @@ namespace OrderFilter.Models
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.EmployeeId)
                     .HasConstraintName("FK_Orders_Employees");
+
+                entity.HasOne(d => d.ShipViaNavigation)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.ShipVia)
+                    .HasConstraintName("FK_Orders_Shippers");
             });
 
             modelBuilder.Entity<OrderDetail>(entity =>
@@ -242,6 +250,15 @@ namespace OrderFilter.Models
                 entity.Property(e => e.UnitsInStock).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.UnitsOnOrder).HasDefaultValueSql("((0))");
+            });
+
+            modelBuilder.Entity<Shipper>(entity =>
+            {
+                entity.Property(e => e.ShipperId).HasColumnName("ShipperID");
+
+                entity.Property(e => e.CompanyName).HasMaxLength(40);
+
+                entity.Property(e => e.Phone).HasMaxLength(24);
             });
 
             OnModelCreatingPartial(modelBuilder);

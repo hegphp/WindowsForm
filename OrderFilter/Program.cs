@@ -1,3 +1,6 @@
+using OrderFilter.Logic.Service;
+using OrderFilter.Service;
+
 namespace OrderFilter {
     internal static class Program {
         /// <summary>
@@ -8,7 +11,13 @@ namespace OrderFilter {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new Form1(
+                new OrderService(),
+                new EmployeeService(),
+                new CustomerService(),
+                new ShipService(),
+                new ProductService()
+            ));
         }
     }
 }
