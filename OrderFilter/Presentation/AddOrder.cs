@@ -1,4 +1,5 @@
 ﻿using OrderFilter.Logic.IService;
+using OrderFilter.Logic.Service;
 using OrderFilter.Models;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,15 @@ namespace OrderFilter.Presentation {
         private ICustomerService customerService;
         private IProductService productService;
         private IShipService shipService;
+        private IOrderDetailService orderDetailService;
 
-        public AddOrder(IEmployeeService _employeeService, ICustomerService _customerService, IShipService _shipService, IProductService _productService, IOrderService _orderService) {
+        public AddOrder(IEmployeeService _employeeService, ICustomerService _customerService, IShipService _shipService, IProductService _productService, IOrderService _orderService, IOrderDetailService _orderDetailService) {
             employeeService = _employeeService;
             orderService = _orderService;
             customerService = _customerService;
             productService = _productService;
             shipService = _shipService;
+            orderDetailService = _orderDetailService;
             InitializeComponent();
         }
 
@@ -115,7 +118,30 @@ namespace OrderFilter.Presentation {
         }
 
         private void addOrderBtn_Click(object sender, EventArgs e) {
+            //Add order
+            Order newOrder = new Order();
+            newOrder.RequiredDate = requiredDTP.Value;
+            newOrder.EmployeeId = (int)empCB.SelectedValue;
+            newOrder.CustomerId = customerCB.SelectedValue.ToString();
+            newOrder.ShipVia = (int)shipperCB.SelectedValue;
+            newOrder.OrderDate = DateTime.Now;
 
+            Order addedOrder = orderService.AddOrder(newOrder);
+            //Add order detail
+            for (int i = 0; i < rightPanel.Controls.Count; i++) {
+                //check if the control is the product Id textbox or not
+                if (i % 3 == 0) {
+                    OrderDetail orderDetail = new OrderDetail();
+                    int productId = Convert.ToInt32(rightPanel.Controls[i].Text);
+                    Product product = productService.GetProductById(productId);
+                    int quantity = Convert.ToInt32(rightPanel.Controls[i + 2].Text);
+                    orderDetail.ProductId = productId;
+                    orderDetail.Quantity = Convert.ToInt16(quantity);
+                    orderDetail.OrderId = addedOrder.OrderId;
+                    orderDetailService.AddOrderDetails(orderDetail);
+                }
+            }
+            MessageBox.Show("Added successfully!");
         }
     }
 }

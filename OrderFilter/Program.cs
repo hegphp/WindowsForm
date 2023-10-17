@@ -16,7 +16,8 @@ namespace OrderFilter {
                 new EmployeeService(),
                 new CustomerService(),
                 new ShipService(),
-                new ProductService()
+                new ProductService(),
+                new OrderDetailService()
             ));
         }
     }

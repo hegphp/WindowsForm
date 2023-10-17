@@ -10,5 +10,7 @@ namespace OrderFilter.Logic.IService {
         List<Order> GetOrdersByFilter(int employeeId, string customerId, DateTime from, DateTime to);
 
         List<Order> GetOrderList();
+
+        Order AddOrder(Order order);
     }
 }

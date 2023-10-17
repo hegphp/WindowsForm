@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using OrderFilter.Logic.IService;
 using OrderFilter.Models;
 using OrderFilter.Presentation;
@@ -11,14 +12,22 @@ namespace OrderFilter {
         ICustomerService customerService;
         IShipService shipperService;
         IProductService productService;
+        IOrderDetailService orderDetailService;
 
-        public Form1(IOrderService _orderService, IEmployeeService _employeeService, ICustomerService _customerService, IShipService _shipperService, IProductService _productService) {
+        BindingSource bs = new BindingSource();
+        SqlDataAdapter dataAdapter = new SqlDataAdapter();
+
+        public Form1(IOrderService _orderService, IEmployeeService _employeeService,
+            ICustomerService _customerService, IShipService _shipperService,
+            IProductService _productService, IOrderDetailService _orderDetailService) {
             orderService = _orderService;
             employeeService = _employeeService;
             customerService = _customerService;
             shipperService = _shipperService;
             productService = _productService;
+            orderDetailService = _orderDetailService;
             InitializeComponent();
+
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -44,30 +53,23 @@ namespace OrderFilter {
                 c.CustomerId,
                 c.ContactName
             }).ToList();
-
             var customerFirstOption = new {CustomerId = "0", ContactName = "All Customer" };
-
             customerList.Insert(0, customerFirstOption);
-
             customerListCB.DataSource = customerList;
             customerListCB.ValueMember = "CustomerId";
             customerListCB.DisplayMember = "ContactName";
 
-            var empListCb = employeeService.GetEmployeeList().Select(emp => new {
+            var empListCbDs = employeeService.GetEmployeeList().Select(emp => new {
                 EmployeeId = emp.EmployeeId,
                 FullName = emp.FirstName + " " + emp.LastName
             }).ToList();
-
             var empListFirstOption = new { EmployeeId = 0, FullName = "All Employee" };
-
-            empListCb.Insert(0, empListFirstOption);
-
-            employeeListCB.DataSource = empListCb;
-
+            empListCbDs.Insert(0, empListFirstOption);
+            employeeListCB.DataSource = empListCbDs;
             employeeListCB.ValueMember = "EmployeeId";
             employeeListCB.DisplayMember = "FullName";
 
-            var bs = new BindingSource();
+            
             bs.DataSource = orderService.GetOrderList().Select(o => new {
                 OrderId = o.OrderId,
                 Employee = o.Employee.FirstName + " " + o.Employee.LastName,
@@ -81,7 +83,8 @@ namespace OrderFilter {
         }
 
         private void openAddOrderForm(object sender, EventArgs e) {
-            AddOrder addOrderForm = new AddOrder(employeeService, customerService, shipperService, productService, orderService);
+            AddOrder addOrderForm = new AddOrder(employeeService, customerService, shipperService,
+                productService, orderService, orderDetailService);
             addOrderForm.ShowDialog();
         }
 
@@ -123,4 +126,3 @@ namespace OrderFilter {
 
         }
     }
-}

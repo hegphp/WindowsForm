@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace OrderFilter.Service {
-    internal class OrderService : IOrderService{
+    internal class OrderService : IOrderService {
         NorthWindContext _context;
 
         public OrderService() {
             _context = new NorthWindContext();
         }
-        
+
         public List<Order> GetOrdersByFilter(int employeeId, string customerId, DateTime from, DateTime to) {
             var output = _context.Orders.Include(o => o.Employee).Include(o => o.Customer).AsQueryable();
 
@@ -27,8 +27,14 @@ namespace OrderFilter.Service {
             return output.Where(o => o.OrderDate >= from && o.OrderDate <= to).ToList();
         }
 
-        public List<Order> GetOrderList() { 
-            return _context.Orders.Include(o => o.Employee).Include(o => o.Customer) .ToList();
+        public List<Order> GetOrderList() {
+            return _context.Orders.Include(o => o.Employee).Include(o => o.Customer).ToList();
+        }
+
+        public Order AddOrder(Order order) {
+            var addedOrder = _context.Orders.Add(order);
+            _context.SaveChanges();
+            return addedOrder.Entity;
         }
     }
 }
